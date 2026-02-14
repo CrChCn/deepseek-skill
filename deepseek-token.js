@@ -119,6 +119,67 @@ const token = {
             result[address] = balance;
         }
         return result;
+    }, // <--- ЗАПЯТАЯ ДОБАВЛЕНА!
+    
+    // Merkle Tree функции
+    generateMerkleTree: function() {
+        // Собираем все балансы
+        const leaves = [];
+        for (const [address, balance] of balances.entries()) { // используем Map
+            leaves.push(`${address}:${balance}`);
+        }
+        
+        // Создаем дерево
+        const MerkleTree = require('./MerkleTree'); // подключаем класс
+        this.merkleTree = new MerkleTree(leaves);
+        this.merkleRoot = this.merkleTree.getRootHex();
+        
+        return this.merkleRoot;
+    },
+    
+    getMerkleRoot: function() {
+        if (!this.merkleTree) {
+            this.generateMerkleTree();
+        }
+        return this.merkleRoot;
+    },
+    
+    getProof: function(address) {
+        if (!this.merkleTree) {
+            this.generateMerkleTree();
+        }
+        
+        const balance = balances.get(address);
+        if (balance === undefined) return null;
+        
+        const leaf = `${address}:${balance}`;
+        const proof = this.merkleTree.getProof(leaf);
+        
+        return {
+            address,
+            balance,
+            proof: proof.map(p => ({
+                position: p.position,
+                data: p.data.toString('hex')
+            })),
+            root: this.merkleRoot
+        };
+    },
+    
+    verifyProof: function(address, balance, proof, root) {
+        const leaf = `${address}:${balance}`;
+        const MerkleTree = require('./MerkleTree');
+        const merkleTree = new MerkleTree([]); // временное дерево для verify
+        
+        // Конвертируем proof обратно в Buffer
+        const proofBuffers = proof.map(p => ({
+            position: p.position,
+            data: Buffer.from(p.data, 'hex')
+        }));
+        
+        const rootBuffer = Buffer.from(root, 'hex');
+        
+        return merkleTree.verifyProof(leaf, proofBuffers, rootBuffer);
     }
 };
 
