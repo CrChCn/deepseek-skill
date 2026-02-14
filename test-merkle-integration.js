@@ -11,10 +11,10 @@ const user2 = token.createUser('Bob');
 const user3 = token.createUser('Charlie');
 const user4 = token.createUser('Dave');
 
-console.log(`  Alice: ${user1.address.slice(0, 10)}...`);
-console.log(`  Bob: ${user2.address.slice(0, 10)}...`);
-console.log(`  Charlie: ${user3.address.slice(0, 10)}...`);
-console.log(`  Dave: ${user4.address.slice(0, 10)}...`);
+console.log(`  Alice: ${user1.address}`);
+console.log(`  Bob: ${user2.address}`);
+console.log(`  Charlie: ${user3.address}`);
+console.log(`  Dave: ${user4.address}`);
 
 // Майним токены для пользователей
 console.log('\nМайним токены...');
@@ -27,7 +27,7 @@ token.mint(user4.address, 750);
 console.log('\nБалансы после майнинга:');
 const balances = token.getAllBalances();
 for (const [addr, bal] of Object.entries(balances)) {
-    console.log(`  ${addr.slice(0, 10)}...: ${bal}`);
+    console.log(`  ${addr}: ${bal}`);
 }
 
 // Генерируем Merkle Tree
@@ -38,10 +38,10 @@ console.log('Корень Merkle Tree:', merkleRoot);
 // Получаем доказательство для Alice
 console.log('\nПолучаем доказательство для Alice:');
 const proofAlice = token.getProof(user1.address);
-console.log(`  Адрес: ${proofAlice.address.slice(0, 10)}...`);
+console.log(`  Адрес: ${proofAlice.address}`);
 console.log(`  Баланс: ${proofAlice.balance}`);
 console.log(`  Кол-во шагов доказательства: ${proofAlice.proof.length}`);
-console.log(`  Корень: ${proofAlice.root.slice(0, 20)}...`);
+console.log(`  Корень: ${proofAlice.root}`);
 
 // Проверяем доказательство для Alice
 console.log('\nПроверяем доказательство для Alice:');
@@ -66,7 +66,7 @@ console.log(`  Результат: ${isFakeAlice ? '❌ ДОЛЖНО БЫТЬ FA
 // Получаем доказательство для Bob
 console.log('\nПолучаем доказательство для Bob:');
 const proofBob = token.getProof(user2.address);
-console.log(`  Адрес: ${proofBob.address.slice(0, 10)}...`);
+console.log(`  Адрес: ${proofBob.address}`);
 console.log(`  Баланс: ${proofBob.balance}`);
 console.log(`  Кол-во шагов: ${proofBob.proof.length}`);
 
