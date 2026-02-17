@@ -1,13 +1,4 @@
 const crypto = require('crypto');
-const { generateKeyPair } = require('./index.js');
-
-const { generateKeyPair } = require('./index.js');
-
-const { generateKeyPair } = require('./index.js');
-
-const { generateKeyPair } = require('./index.js');
-
-const { generateKeyPair } = require('./index.js');
 
 class DeepseekToken {
     constructor(name = 'DEEPSEEK', symbol = 'DEEPSEEK', maxSupply = 21000000) {
