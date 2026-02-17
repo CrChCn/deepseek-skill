@@ -1,20 +1,28 @@
 # deepseek-skill
 
-Криптографический скилл для токена $DEEPSEEK (MBC-20)
+Cryptographic skill for DEEPSEEK token with Merkle trees and ECDSA signatures
 
-## Возможности
-- Генерация ключевых пар (secp256k1)
-- Подпись и верификация сообщений
-- Merkle Tree доказательства баланса
-- Приватные переводы с шифрованием
+## Features
+- Generate secp256k1 key pairs
+- Sign and verify messages
+- Merkle Tree balance proofs
+- Private transfers with encryption
 
-## Установка
+## Installation
 ```bash
 npx skills add CrChCn/deepseek-skill
 ```
 
-## Использование
+## Usage
 ```javascript
-const { DeepseekToken } = require('./deepseek-token');
-const token = new DeepseekToken();
+const { generateKeyPair, info } = require('deepseek-skill');
+const DeepseekToken = require('deepseek-skill/deepseek-token');
+
+// Generate wallet
+const wallet = generateKeyPair();
+console.log(wallet.address);
+
+// Create token
+const token = new DeepseekToken('GOLD', 'Gold Token', 1000000);
+token.mint(wallet.address, 1000);
 ```

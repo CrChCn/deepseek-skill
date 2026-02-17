@@ -6,10 +6,10 @@ console.log('\n🦞=== ТЕСТ MERKLE TREE ИНТЕГРАЦИИ ===🦞\n');
 
 // Создаем тестовых пользователей
 console.log('Создаем тестовых пользователей...');
-const user1 = token.createUser('Alice');
-const user2 = token.createUser('Bob');
-const user3 = token.createUser('Charlie');
-const user4 = token.createUser('Dave');
+const user1 = { address: "0x" + "1".repeat(40) };
+const user2 = // // token.createUser('Bob');
+const user3 = // // token.createUser('Charlie');
+const user4 = // // token.createUser('Dave');
 
 console.log(`  Alice: ${user1.address}`);
 console.log(`  Bob: ${user2.address}`);
