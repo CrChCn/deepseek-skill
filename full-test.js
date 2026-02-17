@@ -17,8 +17,16 @@ console.log();
 // ТЕСТ 2: Генерация ключей
 console.log('ТЕСТ 2: Генерация ключей');
 const keys = skill.crypto.generateKeyPair();
-console.log('  Приватный ключ: ' + keys.priv.slice(0, 20) + '...');
-console.log('  Публичный ключ: ' + keys.pub.slice(0, 20) + '...');
+if (keys && keys.priv) {
+        console.log('  Приватный ключ: ' + keys.priv.slice(0, 20) + '...');
+    } else {
+        console.log('  Приватный ключ: [НЕДОСТУПЕН]');
+    }
+if (keys && keys.pub) {
+        console.log('  Публичный ключ: ' + keys.pub.slice(0, 20) + '...');
+    } else {
+        console.log('  Публичный ключ: [НЕДОСТУПЕН]');
+    }
 const address = skill.crypto.pubKeyToAddress(keys.pub);
 console.log('  Адрес: ' + address);
 console.log();

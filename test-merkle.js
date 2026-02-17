@@ -41,7 +41,13 @@ balances.forEach((b, index) => {
   if (proof.length > 0) {
     console.log('    Proof элементы:');
     proof.forEach((p, i) => {
-      console.log(`      [${i}] ${p.slice(0, 30)}...`);
+      if (p && typeof p === 'string') {
+            console.log(`      [${i}] ${p.slice(0, 30)}...`);
+        } else if (p && p.data) {
+            console.log(`      [${i}] ${p.data.slice(0, 30)}...`);
+        } else {
+            console.log(`      [${i}] [BINARY DATA]`);
+        }
     });
   }
 });

@@ -9,8 +9,16 @@ console.log('1. Информация:', skill.info());
 // 2. Ключи
 const keys = skill.crypto.generateKeyPair();
 console.log('2. Ключи:');
-console.log('   Приватный:', keys.priv.slice(0, 20) + '...');
-console.log('   Публичный:', keys.pub.slice(0, 20) + '...');
+if (keys && keys.priv) {
+        console.log('   Приватный:', keys.priv.slice(0, 20) + '...');
+    } else {
+        console.log('   Приватный: [НЕДОСТУПЕН]');
+    }
+if (keys && keys.pub) {
+        console.log('   Публичный:', keys.pub.slice(0, 20) + '...');
+    } else {
+        console.log('   Публичный: [НЕДОСТУПЕН]');
+    }
 console.log('   Адрес:', skill.crypto.pubKeyToAddress(keys.pub));
 
 // 3. Подписи

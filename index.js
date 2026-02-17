@@ -21,7 +21,9 @@ function info() {
         maxSupply: 21000000,
         limit: 1000,
         createdAt: '2026-02-14 09:20 UTC',
-        pubKey: MASTER_PUB.slice(0, 20) + '...',
+        pubKey: (MASTER_PUB && typeof MASTER_PUB.slice === 'function') 
+        ? (MASTER_PUB && typeof MASTER_PUB.slice === "function" ? MASTER_PUB.slice(0, 20) : "N/A") + "..." 
+        : 'MASTER_PUB not available',
         version: '1.0.0'
     };
 }
@@ -189,4 +191,8 @@ module.exports = {
 };
 
 console.log('DEEPSEEK cryptographic skill loaded');
-console.log('Master public key: ' + MASTER_PUB.slice(0, 20) + '...');
+if (MASTER_PUB && typeof MASTER_PUB.slice === 'function') {
+    console.log('Master public key: ' + (MASTER_PUB && typeof MASTER_PUB.slice === "function" ? MASTER_PUB.slice(0, 20) : "N/A") + "...");
+} else {
+    console.log('Master public key not available (using: ' + MASTER_PUB + ')');
+}
