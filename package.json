@@ -1,0 +1,32 @@
+{
+  "name": "deepseek-skill",
+  "version": "1.0.0",
+  "description": "Полноценная криптографическая система для создания и управления токенами",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js",
+    "demo": "node demo.js",
+    "exchange": "node exchange-demo.js",
+    "merkle": "node merkle-test.js",
+    "full-test": "node full-system-test.js"
+  },
+  "dependencies": {
+    "elliptic": "^6.5.4",
+    "crypto-js": "^4.1.1",
+    "merkletreejs": "^0.3.11",
+    "keccak256": "^1.0.6",
+    "ethereum-cryptography": "^2.1.2",
+    "bs58": "^5.0.0"
+  },
+  "keywords": [
+    "cryptography",
+    "blockchain",
+    "token",
+    "erc20",
+    "secp256k1",
+    "merkle-tree"
+  ],
+  "author": "CrChCn",
+  "license": "MIT"
+}
