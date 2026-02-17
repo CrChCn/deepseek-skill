@@ -77,7 +77,7 @@ console.log('Crypto module loaded');
 console.log('DEEPSEEK cryptographic skill loaded');
 
 if (MASTER_PUB) {
-    console.log('Master public key: ' + MASTER_PUB.slice(0, 20) + '...');
+    console.log('Master public key:', MASTER_PUB);
 } else {
     console.log('Master public key not available');
 }
