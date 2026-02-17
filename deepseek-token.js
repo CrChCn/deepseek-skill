@@ -5,6 +5,10 @@ const { generateKeyPair } = require('./index.js');
 
 const { generateKeyPair } = require('./index.js');
 
+const { generateKeyPair } = require('./index.js');
+
+const { generateKeyPair } = require('./index.js');
+
 class DeepseekToken {
     constructor(name = 'DEEPSEEK', symbol = 'DEEPSEEK', maxSupply = 21000000) {
         this.name = name;

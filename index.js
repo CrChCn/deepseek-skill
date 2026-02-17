@@ -60,6 +60,8 @@ module.exports = {
     generateKeyPair: generateKeyPair,
     generateKeyPair: generateKeyPair,
     generateKeyPair: generateKeyPair,
+    generateKeyPair: generateKeyPair,
+    generateKeyPair: generateKeyPair,
     info: info
 };
 
@@ -69,7 +71,15 @@ console.log('DEEPSEEK cryptographic skill loaded');
 if (MASTER_PUB) {
     if (MASTER_PUB && typeof MASTER_PUB === "string") {
     if (MASTER_PUB && typeof MASTER_PUB === "string") {
+    if (MASTER_PUB && typeof MASTER_PUB === "string") {
+    if (MASTER_PUB && typeof MASTER_PUB === "string") {
     console.log('Master public key: ' + MASTER_PUB.slice(0, 20) + '...');
+} else {
+    console.log('Master public key not available');
+}
+} else {
+    console.log('Master public key not available');
+}
 } else {
     console.log('Master public key not available');
 }
