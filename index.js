@@ -68,11 +68,6 @@ function info() {
     };
 }
 
-module.exports = {
-    generateKeyPair,
-    info
-};
-
 console.log('Crypto module loaded');
 console.log('DEEPSEEK cryptographic skill loaded');
 
@@ -81,3 +76,9 @@ if (MASTER_PUB) {
 } else {
     console.log('Master public key not available');
 }
+
+module.exports = {
+    generateKeyPair,
+    info,
+    MASTER_PUB
+};
