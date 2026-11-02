@@ -1,10 +1,10 @@
 {
   "name": "deepseek-skill",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cryptographic skill for DEEPSEEK token",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test-simple.js && node test-token.js && node test-merkle.js"
   },
   "keywords": [
     "mbc20",
@@ -16,11 +16,10 @@
   "author": "CrChCn",
   "license": "MIT",
   "dependencies": {
-    "crypto-js": "^4.2.0",
-    "dotenv": "^17.3.1",
     "elliptic": "^6.6.1",
-    "merkle": "^0.2.0",
-    "merkle-tools": "^1.4.1",
-    "merkletreejs": "^0.6.0"
+    "bs58": "^6.0.0",
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.6.0",
+    "crypto-js": "^4.2.0"
   }
 }

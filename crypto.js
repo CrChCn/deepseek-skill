@@ -46,7 +46,7 @@ function createLeaf(address, amount) {
 
 function buildMerkleTree(balances) {
     const leaves = balances.map(b => createLeaf(b.address, b.amount));
-    const tree = new MerkleTree(leaves, sha256, { sortPairs: true });
+    const tree = new MerkleTree(leaves, sha256, {});
     return {
         tree: tree,
         root: tree.getRoot().toString('hex'),
@@ -134,4 +134,3 @@ module.exports = {
     sha256
 };
 
-console.log('Crypto module loaded');
