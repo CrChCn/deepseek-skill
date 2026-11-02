@@ -1,4 +1,4 @@
-// crypto.js — ключи secp256k1, ECDSA-подписи, Merkle-хелперы для DEEPSEEK
+// crypto.js — ключи secp256k1, ECDSA-подписи, Merkle-хелперы для AGTDEEP (тикер DEEP)
 const EC = require('elliptic').ec;
 const crypto = require('crypto');
 const { MerkleTree } = require('merkletreejs');

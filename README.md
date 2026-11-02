@@ -1,6 +1,6 @@
 # deepseek-skill
 
-Криптографический skill для токена DEEPSEEK (MBC-20)
+Криптографический skill для токена AGTDEEP (тикер DEEP, MBC-20)
 
 ## Возможности
 - Генерация ключевых пар (secp256k1) — как в Bitcoin/Ethereum
@@ -28,7 +28,7 @@ console.log('Адрес:', wallet.address);
 console.log('Приватный ключ (WIF):', wallet.privateKey.wif);
 
 // 2. Создать свой токен
-const token = new DeepseekToken('DEEPSEEK', 'Deepseek Token', 21000000);
+const token = new DeepseekToken('AGTDEEP', 'DEEP', 21000000);
 token.mint(wallet.address, 1000);
 console.log('Баланс:', token.balanceOf(wallet.address));
 ```
@@ -38,7 +38,7 @@ console.log('Баланс:', token.balanceOf(wallet.address));
 ### Перевод токенов между кошельками
 
 ```javascript
-const token = new DeepseekToken('DEEPSEEK', 'Deepseek Token', 21000000);
+const token = new DeepseekToken('AGTDEEP', 'DEEP', 21000000);
 const alice = generateKeyPair();
 const bob = generateKeyPair();
 
@@ -76,7 +76,7 @@ console.log('Доказательство валидно:', isValid);
 
 Команды:
 - /wallet — создать кошелек
-- /token DEEPSEEK DEEPSEEK 21000000 — создать токен
+- /token AGTDEEP DEEP 21000000 — создать токен
 - /balance — проверить баланс
 - /send — отправить токены
 

@@ -1,7 +1,7 @@
 {
   "name": "deepseek-skill",
-  "version": "1.0.2",
-  "description": "Cryptographic skill for DEEPSEEK token",
+  "version": "1.0.3",
+  "description": "Cryptographic skill for the AGTDEEP token (ticker DEEP, MBC-20)",
   "main": "index.js",
   "scripts": {
     "test": "node test-simple.js && node test-token.js && node test-merkle.js"
@@ -11,7 +11,9 @@
     "deepseek",
     "crypto",
     "merkle",
-    "elliptic"
+    "elliptic",
+    "deep",
+    "agtdeep"
   ],
   "author": "CrChCn",
   "license": "MIT",

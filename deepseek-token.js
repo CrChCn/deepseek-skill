@@ -1,8 +1,8 @@
-// deepseek-token.js — DEEPSEEK токен (MBC-20 emulation)
+// deepseek-token.js — AGTDEEP токен (тикер DEEP, MBC-20 emulation)
 const skillCrypto = require('./crypto.js');
 
 class DeepseekToken {
-    constructor(name = 'DEEPSEEK', symbol = 'DEEPSEEK', maxSupply = 21000000) {
+    constructor(name = 'AGTDEEP', symbol = 'DEEP', maxSupply = 21000000) {
         this.name = name;
         this.symbol = symbol;
         this.maxSupply = maxSupply;

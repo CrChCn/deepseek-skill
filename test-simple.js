@@ -32,7 +32,7 @@ assert.ok(tree.verifyProof(leaves[1], proof, tree.getRoot()), 'valid proof verif
 assert.ok(!tree.verifyProof('balance-mallory-999', proof, tree.getRoot()), 'foreign leaf rejects');
 
 // 5) token
-const token = new DeepseekToken('DEEPSEEK', 'DEEPSEEK', 21000000);
+const token = new DeepseekToken('AGTDEEP', 'DEEP', 21000000);
 assert.ok(token.mint(wallet.address, 500).success, 'mint ok');
 assert.ok(!token.mint(wallet.address, 5000).success, 'over-limit mint rejected');
 

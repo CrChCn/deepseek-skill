@@ -1,6 +1,6 @@
 # deepseek-skill
 
-Cryptographic skill for DEEPSEEK token with Merkle trees and ECDSA signatures
+Cryptographic skill for AGTDEEP (ticker DEEP) token with Merkle trees and ECDSA signatures
 
 ## Features
 - Generate secp256k1 key pairs

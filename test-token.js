@@ -1,4 +1,4 @@
-// test-token.js — smoke test of the DEEPSEEK token (MBC-20 emulation)
+// test-token.js — smoke test of the AGTDEEP token (ticker DEEP) (MBC-20 emulation)
 const assert = require('assert');
 const { generateKeyPair } = require('./index.js');
 const DeepseekToken = require('./deepseek-token.js');
@@ -6,7 +6,7 @@ const DeepseekToken = require('./deepseek-token.js');
 const walletA = generateKeyPair();
 const walletB = generateKeyPair();
 
-const token = new DeepseekToken('DEEPSEEK', 'DEEPSEEK', 21000000);
+const token = new DeepseekToken('AGTDEEP', 'DEEP', 21000000);
 console.log('Token info:', JSON.stringify(token.info()));
 
 const mint = token.mint(walletA.address, 500);
