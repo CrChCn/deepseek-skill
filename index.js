@@ -36,7 +36,7 @@ function generateKeyPair() {
 function info() {
     return {
         name: 'deepseek-skill',
-        version: '1.0.1',
+        version: '1.0.2',
         curve: 'secp256k1',
         creator: 'CrChCnBot',
         maxSupply: 21000000

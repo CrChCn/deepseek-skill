@@ -13,6 +13,10 @@ const wallet = generateKeyPair();
 assert.ok(wallet.privateKey.wif, 'wif present');
 assert.ok(/^0x[0-9a-f]{40}$/.test(wallet.address), 'eth-like address');
 
+// приватник выводится в тот же адрес (владение подтверждаемо)
+const derived = crypto.privateKeyToAddress(wallet.privateKey.hex);
+assert.equal(derived.address, wallet.address, 'privateKey -> same address');
+
 // 3) sign / verify
 const msg = 'deepseek-smoke-test';
 const sig = crypto.signMessage(msg, wallet.privateKey.hex);
@@ -29,10 +33,20 @@ assert.ok(!tree.verifyProof('balance-mallory-999', proof, tree.getRoot()), 'fore
 
 // 5) token
 const token = new DeepseekToken('DEEPSEEK', 'DEEPSEEK', 21000000);
-assert.ok(token.mint('alice', 500).success, 'mint ok');
-assert.ok(!token.mint('alice', 5000).success, 'over-limit mint rejected');
-assert.ok(token.transfer('alice', 'bob', 300, 'privkey-sim').success, 'transfer ok');
-assert.equal(token.balanceOf('alice'), 200, 'alice balance');
+assert.ok(token.mint(wallet.address, 500).success, 'mint ok');
+assert.ok(!token.mint(wallet.address, 5000).success, 'over-limit mint rejected');
+
+// настоящий приватник владельца: успех
+assert.ok(token.transfer(wallet.address, 'bob', 300, wallet.privateKey.hex).success, 'transfer with owning key ok');
+assert.equal(token.balanceOf(wallet.address), 200, 'alice balance');
 assert.equal(token.balanceOf('bob'), 300, 'bob balance');
+
+// чужой приватник не может тратить чужой адрес
+const stranger = generateKeyPair();
+assert.ok(!token.transfer(wallet.address, 'bob', 100, stranger.privateKey.hex).success, 'foreign-key transfer rejected');
+
+// ноль/отрицательные суммы отклоняются
+assert.ok(!token.transfer(wallet.address, 'bob', 0, wallet.privateKey.hex).success, 'zero amount rejected');
+assert.ok(!token.transfer(wallet.address, 'bob', -1, wallet.privateKey.hex).success, 'negative amount rejected');
 
 console.log('deepseek-skill core smoke: ALL OK');

@@ -1,6 +1,6 @@
 {
   "name": "deepseek-skill",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Cryptographic skill for DEEPSEEK token",
   "main": "index.js",
   "scripts": {

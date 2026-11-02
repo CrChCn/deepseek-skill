@@ -1,8 +1,9 @@
-// crypto.js - ИСПРАВЛЕННАЯ ВЕРСИЯ
+// crypto.js — ключи secp256k1, ECDSA-подписи, Merkle-хелперы для DEEPSEEK
 const EC = require('elliptic').ec;
 const crypto = require('crypto');
 const { MerkleTree } = require('merkletreejs');
 const CryptoJS = require('crypto-js');
+const keccak256 = require('keccak256');
 
 const ec = new EC('secp256k1');
 
@@ -17,6 +18,30 @@ function generateKeyPair() {
         privateKey: key.getPrivate('hex'),
         publicKey: key.getPublic('hex')
     };
+}
+
+function privateKeyToPublicKey(privateKeyHex) {
+    try {
+        return ec.keyFromPrivate(privateKeyHex, 'hex').getPublic('hex');
+    } catch (e) {
+        return null;
+    }
+}
+
+// Приватный ключ -> { publicKey, address } (eth-подобный адрес через keccak,
+// тот же вывод, что и в index.js generateKeyPair) — для проверки владения адресом
+function privateKeyToAddress(privateKeyHex) {
+    try {
+        const key = ec.keyFromPrivate(privateKeyHex, 'hex');
+        const publicKey = key.getPublic('hex');
+        const addressBuffer = keccak256(Buffer.from(publicKey, 'hex')).slice(-20);
+        return {
+            publicKey: publicKey,
+            address: '0x' + addressBuffer.toString('hex')
+        };
+    } catch (e) {
+        return null;
+    }
 }
 
 function signMessage(message, privateKeyHex) {
@@ -69,7 +94,7 @@ function verifyProof(proof, leaf, root) {
         const rootBuf = Buffer.isBuffer(root) ? root : Buffer.from(root, 'hex');
         const proofBufs = proof.map(p => Buffer.from(p.data, 'hex'));
         const positions = proof.map(p => p.position);
-        
+
         let current = leafBuf;
         for (let i = 0; i < proofBufs.length; i++) {
             if (positions[i] === 'left') {
@@ -118,6 +143,8 @@ function hash(data) {
 
 module.exports = {
     generateKeyPair,
+    privateKeyToPublicKey,
+    privateKeyToAddress,
     signMessage,
     verifySignature,
     createLeaf,
@@ -133,4 +160,3 @@ module.exports = {
     hash,
     sha256
 };
-
